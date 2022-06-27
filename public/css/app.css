@@ -1,0 +1,14 @@
+#form {
+    flex: 1 1 auto;
+}
+
+#tabela {
+    flex: 1 1 auto;
+}
+
+#calosc {
+    display: flex;
+    margin-top: 25px;
+    margin-right: 20px;
+    margin-left: 20px;
+}

@@ -1,1 +1,51 @@
 {% extends('base.html.twig') %}
+
+{% block head %}
+    {% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    {% endblock %}
+    {% block javascripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    {% endblock %}
+    <{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+    <div id="calosc">
+        <div id="form">
+            {{ form_start(eksportForm) }}
+            {{ form_widget(eksportForm) }}
+            {{ form_end(eksportForm) }}
+        </div>
+
+        <div id="tabela">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nazwa</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Godzina</th>
+                        <th scope="col">Użytkownik</th>
+                        <th scope="col">Lokal</th>
+                    </tr>
+                </thead>
+
+                <tbody>{% if eksporty %}
+                    {% for eksport in eksporty %}
+                        <tr>
+                            <td>{{ eksport.nazwa }}</td>
+                            <td>{{ eksport.data|date("m/d/Y") }}</td>
+                            <td>{{ eksport.godzina|date("H:m") }}</td>
+                            <td>{{ eksport.uzytkownik }}</td>
+                            <td>{{ eksport.lokal }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
